@@ -25,8 +25,8 @@ class User(db.Model):
 class People(db.Model):
     __tablename__ = 'people'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.db.String(250), unique=True)
-    height = db.Column(db.Integer(250), nullable=False)   
+    name = db.Column(db.String(250), unique=True)
+    height = db.Column(db.Integer, nullable=False)   
     gender = db.Column(db.String(250), nullable=False)    
     
     def serialize_people(self):
