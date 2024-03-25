@@ -48,7 +48,7 @@ def create():
     return jsonify({'message': 'El usuario ya existe'})
   else:
     user.name = request.json.get("name")
-    user.last_name = request.json.get("lastname")
+    user.last_name = request.json.get("last_name")
     user.email = request.json.get("email")
     user.password = request.json.get("password")
     user.subscription_date =request.json.get("subscription_date")
