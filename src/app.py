@@ -125,7 +125,7 @@ def createpeople():
   #Listo los personajes
 @app.route('/people', methods=["GET"])
 def people():
-    people= People.query.all()
+    peoples= People.query.all()
     peoples= list(map(lambda people: people.serialize_people(), peoples))
    
     return jsonify({
@@ -142,7 +142,6 @@ def updatepeople():
     return "The character does not exist", 401
   else:
     peopletoupdate.name = request.json.get("name")
-    peopletoupdate.status = request.json.get("status")
     peopletoupdate.species = request.json.get("species")
     peopletoupdate.gender = request.json.get("gender")
   
@@ -196,9 +195,9 @@ def createplanet():
     return f"Se creo el planeta", 201
   
   #List planets
-@app.route('/´planet', methods=["GET"])
+@app.route('/planet', methods=["GET"])
 def planet():
-    planet= Planet.query.all()
+    planets= Planet.query.all()
     planets = list(map(lambda planet: planet.serialize_planet(), planets))
    
     return jsonify({
@@ -222,7 +221,7 @@ def updateplanet():
      db.session.add(planettoupdate)
      db.session.commit()
     
-     return f"Se actualizo el personaje", 201
+     return f"Se actualizo el planeta", 201
 
 #Delete planet  
 @app.route("/deleteplanet/<int:id>", methods=['DELETE'])
@@ -236,16 +235,17 @@ def delete_planet(id):
       "status": "Success"
     }), 203
   else:
-    return jsonify({"error":"Personaje no encontrado"}),404
-  
+    return jsonify({"error":"planeta no encontrado"}),404
+
+ 
 #Show planets by id
 @app.route('/planet/<int:id>', methods=["GET"])
 def obtainig_planet(id):
     planetbyid= Planet.query.filter_by(id=id).first()
     if planetbyid is not None:
-         return jsonify(planetbyid.serialize_people()), 200
+         return jsonify(planetbyid.serialize_planet()), 200
     else:
-         return jsonify({"error":"Character not found"}),404
+         return jsonify({"error":"Planet not found"}),404
     
  #----------------------------PLANET METHOD´S END---------------------------------------------   
 
